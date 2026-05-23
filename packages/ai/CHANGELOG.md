@@ -111,6 +111,10 @@
 
 - Changed `OAuthLoginCallbacks` to require `onDeviceCode` and `onSelect`, so OAuth providers can rely on pi supplying device-code and selection UI callbacks ([#4788](https://github.com/earendil-works/pi-mono/pull/4788) by [@vegarsti](https://github.com/vegarsti)).
 
+### Added
+
+- Added built-in LM Studio provider support with a `local` model targeting `http://127.0.0.1:1234/v1`.
+
 ### Fixed
 
 - Fixed custom Anthropic-compatible model aliases for adaptive-thinking Claude models by adding `compat.forceAdaptiveThinking` model metadata and moving built-in adaptive-thinking selection out of provider id substring checks ([#4797](https://github.com/earendil-works/pi-mono/pull/4797) by [@mbazso](https://github.com/mbazso)).

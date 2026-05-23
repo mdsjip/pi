@@ -331,4 +331,12 @@ describe("Token Statistics on Abort", () => {
 			await testTokensOnAbort(llm);
 		});
 	});
+
+	describe.skipIf(!process.env.LM_STUDIO_API_KEY)("LM Studio Provider", () => {
+		const llm = getModel("lm-studio", "local");
+
+		it("should include token stats when aborted mid-stream", { retry: 3, timeout: 30000 }, async () => {
+			await testTokensOnAbort(llm, { apiKey: process.env.LM_STUDIO_API_KEY });
+		});
+	});
 });

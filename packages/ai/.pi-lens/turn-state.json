@@ -1,0 +1,18 @@
+{
+  "files": {
+    "src/providers/lmstudio.ts": {
+      "modifiedRanges": [
+        {
+          "start": 1,
+          "end": 672
+        }
+      ],
+      "importsChanged": true,
+      "lastEdit": "2026-05-22T23:45:02.891Z"
+    }
+  },
+  "turnCycles": 0,
+  "maxCycles": 3,
+  "lastUpdated": "2026-05-22T23:45:02.891Z",
+  "sessionId": "lens-mphk8iwl-a8fc29d4"
+}

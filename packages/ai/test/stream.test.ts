@@ -1630,4 +1630,32 @@ describe("Generate E2E Tests", () => {
 			await multiTurn(llm, { apiKey: "test", reasoningEffort: "medium" });
 		});
 	});
+
+	describe.skipIf(!process.env.LM_STUDIO_API_KEY)("LM Studio Provider (local via OpenAI Completions)", () => {
+		const llm = getModel("lm-studio", "local");
+
+		it("should complete basic text generation", { retry: 3 }, async () => {
+			await basicTextGeneration(llm, { apiKey: process.env.LM_STUDIO_API_KEY });
+		});
+
+		it("should handle tool calling", { retry: 3 }, async () => {
+			await handleToolCall(llm, { apiKey: process.env.LM_STUDIO_API_KEY });
+		});
+
+		it("should handle streaming", { retry: 3 }, async () => {
+			await handleStreaming(llm, { apiKey: process.env.LM_STUDIO_API_KEY });
+		});
+
+		it("should handle thinking mode", { retry: 3 }, async () => {
+			await handleThinking(llm, { apiKey: process.env.LM_STUDIO_API_KEY, reasoningEffort: "medium" });
+		});
+
+		it("should handle multi-turn with thinking and tools", { retry: 3 }, async () => {
+			await multiTurn(llm, { apiKey: process.env.LM_STUDIO_API_KEY, reasoningEffort: "medium" });
+		});
+
+		it("should handle image input", { retry: 3 }, async () => {
+			await handleImage(llm, { apiKey: process.env.LM_STUDIO_API_KEY });
+		});
+	});
 });

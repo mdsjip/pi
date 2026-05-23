@@ -2079,12 +2079,27 @@ async function generateModels() {
 	];
 	allModels.push(...vertexModels);
 
+	// LM Studio local OpenAI-compatible server
+	allModels.push({
+		id: "local",
+		name: "LM Studio (Local)",
+		api: "openai-completions",
+		provider: "lm-studio",
+		baseUrl: "http://127.0.0.1:1234/v1",
+		reasoning: false,
+		input: ["text", "image"],
+		cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 },
+		contextWindow: 128000,
+		maxTokens: 4096,
+	});
+
 	// Azure Foundry deploys these with larger context windows than OpenAI's own API,
 	// which caps gpt-5.4/gpt-5.5 at 272k. See models-sold-directly-by-azure docs.
 	const AZURE_CONTEXT_WINDOW_OVERRIDES: Record<string, number> = {
 		"gpt-5.4": 1050000,
 		"gpt-5.5": 1050000,
 	};
+
 	const azureOpenAiModels: Model<Api>[] = allModels
 		.filter((model) => model.provider === "openai" && model.api === "openai-responses")
 		.map((model) => ({

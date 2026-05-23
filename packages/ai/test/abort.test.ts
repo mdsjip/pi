@@ -301,4 +301,16 @@ describe("AI Providers Abort Tests", () => {
 			await testAbortThenNewMessage(llm);
 		});
 	});
+
+	describe.skipIf(!process.env.LM_STUDIO_API_KEY)("LM Studio Provider Abort", () => {
+		const llm = getModel("lm-studio", "local");
+
+		it("should abort mid-stream", { retry: 3 }, async () => {
+			await testAbortSignal(llm, { apiKey: process.env.LM_STUDIO_API_KEY });
+		});
+
+		it("should handle immediate abort", { retry: 3 }, async () => {
+			await testImmediateAbort(llm, { apiKey: process.env.LM_STUDIO_API_KEY });
+		});
+	});
 });

@@ -5635,6 +5635,25 @@ export const MODELS = {
 			maxTokens: 32768,
 		} satisfies Model<"anthropic-messages">,
 	},
+	"lm-studio": {
+		"local": {
+			id: "local",
+			name: "LM Studio (Local)",
+			api: "openai-completions",
+			provider: "lm-studio",
+			baseUrl: "http://127.0.0.1:1234/v1",
+			reasoning: false,
+			input: ["text", "image"],
+			cost: {
+				input: 0,
+				output: 0,
+				cacheRead: 0,
+				cacheWrite: 0,
+			},
+			contextWindow: 128000,
+			maxTokens: 4096,
+		} satisfies Model<"openai-completions">,
+	},
 	"minimax": {
 		"MiniMax-M2.7": {
 			id: "MiniMax-M2.7",
@@ -8409,24 +8428,6 @@ export const MODELS = {
 			contextWindow: 204800,
 			maxTokens: 131072,
 		} satisfies Model<"openai-completions">,
-		"minimax-m2.5-free": {
-			id: "minimax-m2.5-free",
-			name: "MiniMax M2.5 Free",
-			api: "anthropic-messages",
-			provider: "opencode",
-			baseUrl: "https://opencode.ai/zen",
-			compat: {"supportsEagerToolInputStreaming":false,"supportsLongCacheRetention":false},
-			reasoning: true,
-			input: ["text"],
-			cost: {
-				input: 0,
-				output: 0,
-				cacheRead: 0,
-				cacheWrite: 0,
-			},
-			contextWindow: 204800,
-			maxTokens: 131072,
-		} satisfies Model<"anthropic-messages">,
 		"minimax-m2.7": {
 			id: "minimax-m2.7",
 			name: "MiniMax M2.7",
@@ -12396,7 +12397,7 @@ export const MODELS = {
 				cacheWrite: 0,
 			},
 			contextWindow: 262144,
-			maxTokens: 262140,
+			maxTokens: 262144,
 		} satisfies Model<"openai-completions">,
 		"qwen/qwen3.6-35b-a3b": {
 			id: "qwen/qwen3.6-35b-a3b",

@@ -77,6 +77,7 @@ pi
 | Xiaomi MiMo Token Plan (China) | `XIAOMI_TOKEN_PLAN_CN_API_KEY` | `xiaomi-token-plan-cn` |
 | Xiaomi MiMo Token Plan (Amsterdam) | `XIAOMI_TOKEN_PLAN_AMS_API_KEY` | `xiaomi-token-plan-ams` |
 | Xiaomi MiMo Token Plan (Singapore) | `XIAOMI_TOKEN_PLAN_SGP_API_KEY` | `xiaomi-token-plan-sgp` |
+| LM Studio | `LM_STUDIO_API_KEY` | `lm-studio` |
 
 Reference for environment variables and `auth.json` keys: [`const envMap`](https://github.com/earendil-works/pi-mono/blob/main/packages/ai/src/env-api-keys.ts) in [`packages/ai/src/env-api-keys.ts`](https://github.com/earendil-works/pi-mono/blob/main/packages/ai/src/env-api-keys.ts).
 
@@ -240,9 +241,21 @@ export GOOGLE_CLOUD_LOCATION=us-central1
 
 Or set `GOOGLE_APPLICATION_CREDENTIALS` to a service account key file.
 
+### LM Studio
+
+LM Studio runs a local OpenAI-compatible server. Start the server in LM Studio, then:
+
+```bash
+# If LM Studio has no API key configured, use any non-empty value
+export LM_STUDIO_API_KEY=not-needed
+pi --provider lm-studio --model local
+```
+
+The built-in `local` model targets `http://127.0.0.1:1234/v1` by default. To use a different host or port, override the base URL in `models.json`.
+
 ## Custom Providers
 
-**Via models.json:** Add Ollama, LM Studio, vLLM, or any provider that speaks a supported API (OpenAI Completions, OpenAI Responses, Anthropic Messages, Google Generative AI). See [models.md](models.md).
+**Via models.json:** Add Ollama, vLLM, or any provider that speaks a supported API (OpenAI Completions, OpenAI Responses, Anthropic Messages, Google Generative AI). See [models.md](models.md).
 
 **Via extensions:** For providers that need custom API implementations or OAuth flows, create an extension. See [custom-provider.md](custom-provider.md) and [examples/extensions/custom-provider-gitlab-duo](../examples/extensions/custom-provider-gitlab-duo/).
 
